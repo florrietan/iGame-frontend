@@ -54,7 +54,7 @@ export default {
   },
   methods:{
      search:function() {
-        this.$router.replace({path: '/SearchPage'});
+        this.$router.replace({path: '/Search'});
       },
     setUserState()
     {

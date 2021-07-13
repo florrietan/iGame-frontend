@@ -157,7 +157,7 @@ export default {
         IsLogin: true,
         circleUrl:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
        
-        bar: [{
+        bar: [{//贴吧排行用的数组
           router:'/activity',
             BarTitle:"hello",
             BarFans:123,
@@ -172,7 +172,7 @@ export default {
             BarIconUrl:require('../assets/1.jpg')
             },
           ],
-        hotbar:[{
+        hotbar:[{//走马灯用的数组
           viewRouter: require('../assets/4.jpg'),
         },
         {

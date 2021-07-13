@@ -1,5 +1,5 @@
 <template>
-  <div class="BrowsePost" style="margin:auto;height: 2000px;text-align:center; background-image: url(https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png); background-repeat:repeat-y;">
+  <div class="BrowsePost" style="margin:auto;text-align:center; background-image: url(https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png); background-repeat:repeat-y;">
 
     <div class="line"></div>
 
@@ -7,52 +7,101 @@
         <el-container style="height:90%;">
           <el-container class="post-main-column" style="width=90%;margin:0 2%;">
             <el-main style="background-color:rgba(255, 255, 255, 0.4);text-align:center;">
-
+              
               <!--楼主-->
-              <div class="comment owner" style="width:100%;">
-                <el-aside class="user-side" style="margin-right:23px;border-radius:10px;background-color:rgba(255, 255, 255, 0.8);width:25%;height:100%;display:inline-block;">
-                  <div>                
-                    <ul>
-                      <li>
-                        <div>
-                          <a target="_blank" href="/#/UserPage">
-                            <img class="avatar" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc8%2Fdd%2Fb9%2Fc8ddb934a69d90216f1b406cf3975475.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628668047&t=1ffbd058e5f38c29f8a9757421ff7503">
-                          </a>
-                        </div>
-                      </li>
-                      <br>
+              <div class="postOwner">
+                <div class="comment owner">
+                  <el-aside class="user-side" >
+                    <div>                
+                      <ul>
+                        <li>
+                          <div>
+                            <a target="_blank" href="/#/UserPage">
+                              <img class="avatar" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc8%2Fdd%2Fb9%2Fc8ddb934a69d90216f1b406cf3975475.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628668047&t=1ffbd058e5f38c29f8a9757421ff7503">
+                            </a>
+                          </div>
+                        </li>
+                        <br>
 
-                      <li>
-                      <a href="/#/UserPage" target="_blank">
-                        我是楼主哈哈哈
-                      </a>
-                      </li>
+                        <li>
+                        <a href="/#/UserPage" target="_blank">
+                          我是楼主哈哈哈
+                        </a>
+                        </li>
 
-                      <br>
-                      <li class="l_badge" style="display:block;">
-                        <div class="signature">
-                          楼主的个性签名
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </el-aside>
+                        <br>
+                        <li class="l_badge" style="display:block;">
+                          <div class="signature">
+                            楼主的个性签名
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </el-aside>
 
-                <el-main class="content-side" style="background-color:rgba(255, 255, 255, 0.9);width:72%;height:100%;display: inline-block;">
-                楼主内容
-                <br><br><br><br>
-                楼主内容
-                                <br><br><br><br>
-                楼主内容
-                                <br><br><br><br>
-                楼主内容
-                                <br><br><br><br>
-                楼主内容
-                </el-main>
+                  <el-main class="content-side" >
+                  楼主内容
+                  <br><br><br><br>
+                  楼主内容
+                                  <br><br><br><br>
+                  楼主内容
+                                  <br><br><br><br>
+                  楼主内容
+                                  <br><br><br><br>
+                  楼主内容
+                  </el-main>
+                </div>
               </div>
 
-              <div class="comment" style="width:100%;">
-                <el-aside class="user-side" style="margin-right:23px;border-radius:10px;background-color:rgba(255, 255, 255, 0.8);width:25%;height:100%;display:inline-block;">
+              <div class="spanAllComment" v-for="(item, index) in getItems" :key="item" :offset="index">
+                <div class="comment">
+                  <el-aside class="user-side">
+                    <div>                
+                      <ul>
+                        <li>
+                          <div>
+                            <a style="" target="_blank" href="/#/UserPage">
+                              <img class="avatar" src="https://img2.baidu.com/it/u=2421505363,3507499484&fm=26&fmt=auto&gp=0.jpg">
+                            </a>
+                          </div>
+                        </li>
+                        <br>
+
+                        <li>
+                        <a href="/#/UserPage" target="_blank">
+                          我是沙发
+                        </a>
+                        </li>
+
+                        <br>
+                        <li class="l_badge" style="display:block;">
+                          <div class="signature">
+                            沙发的个性签名
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </el-aside>
+                  <el-main class="content-side">
+                    评论内容
+                                    <br><br><br><br>
+                    评论内容
+                                    <br><br><br><br>
+                    评论内容
+                                    <br><br><br><br>
+                    评论内容
+                                    <br><br><br><br>
+                    评论内容
+                                    <br><br><br><br>
+                    评论内容
+                  </el-main>
+                </div>
+              </div> <!--end of spanAllComment-->
+
+
+
+              <div class="comment">
+                <el-aside class="user-side">
                   <div>                
                     <ul>
                       <li>
@@ -79,7 +128,7 @@
                     </ul>
                   </div>
                 </el-aside>
-                <el-main class="content-side" style="background-color:rgba(255, 255, 255, 0.9);width:72%;height:100%;display: inline-block;">
+                <el-main class="content-side">
                 评论内容
                                 <br><br><br><br>
                 评论内容
@@ -94,8 +143,8 @@
                 </el-main>
               </div>
 
-              <div class="comment" style="width:100%;">
-                <el-aside class="user-side" style="margin-right:23px;border-radius:10px;background-color:rgba(255, 255, 255, 0.8);width:25%;height:100%;display:inline-block;">
+              <div class="comment">
+                <el-aside class="user-side">
                   <div>                
                     <ul>
                       <li>
@@ -122,7 +171,7 @@
                     </ul>
                   </div>
                 </el-aside>
-                <el-main class="content-side" style="background-color:rgba(255, 255, 255, 0.9);width:72%;height:100%;display: inline-block;">
+                <el-main class="content-side">
                 盖楼盖楼
                                 <br><br><br><br>
                 盖楼盖楼
@@ -137,8 +186,8 @@
                 </el-main>
               </div>
 
-              <div class="comment owner" style="width:100%;">
-                <el-aside class="user-side" style="margin-right:23px;border-radius:10px;background-color:rgba(255, 255, 255, 0.8);width:25%;height:100%;display:inline-block;">
+              <div class="comment">
+                <el-aside class="user-side">
                   <div>                
                     <ul>
                       <li>
@@ -165,7 +214,7 @@
                     </ul>
                   </div>
                 </el-aside>
-                <el-main class="content-side" style="background-color:rgba(255, 255, 255, 0.9);width:72%;height:100%;display: inline-block;">
+                <el-main class="content-side">
                 继续盖楼
                                 <br><br><br><br>
                 继续盖楼
@@ -180,6 +229,22 @@
                 </el-main>
               </div>
 
+              <div class="postNewComment comment" style="height:auto;width:90%;padding:2% 3%;background-color:rgba(255,255,255,0.8);">
+                <p style="text-align:left;font-size:20px;font-weight:500;">发表新的评论：</p><br>
+                <div>
+                  <el-input
+                    type="textarea"
+                    :autosize = "{ minRows: 6}"
+                    placeholder="请输入评论内容"
+                    v-model="commentContent">
+                  </el-input>
+                </div>
+
+                <div>
+                  <br>
+                  <el-button type="primary" style="float:center;" @click="submitComment()">发表</el-button>
+                </div>
+              </div>
             </el-main>
           </el-container>
 
@@ -232,10 +297,21 @@
 
 <script>
 // import axios from 'axios'
-  export default {
-    name: "login",
+export default {
+  //name: "login",
+
   data() {
     return {
+      getItems: [],//
+      cNickname: "",
+      cSignature: "",
+      commentContent: "",
+      postTitle: "",
+      pNickname: "",
+      pSignature: "",
+      postContent: "",
+      url: "http://139.196.167.75:5000/api/PostTiezi",
+
         tableData: [{
           tag: '精华',
           post: 'iGame精华贴',
@@ -301,20 +377,56 @@
         }
         ] 
         ,
+      
       isLogin:false
     };
   },
-  methods: {
-    submitLoginForm() {
 
-      this.$message.success("登录成功!!!");
-      this.$router.push({path: "/"});
+    mounted() {
+    this.getPostBrowser(localStorage.postID);
+    console.log("贴子内容是："+this.postContent);
+
+  },
+
+  methods: {
+
+    store:function(item) {
+      this.getItems=JSON.parse(item);
+      console.log(this.getItems);
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    async getPostBrowser(postID) {
+      this.url = this.url + '/' + postID;
+      console.log("url是:" + this.url);
+      await fetch(this.url, {
+        method:'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => this.store(data));
+      //console.log("get到了");
+    },
+    getContent(item,index) {
+      if(index === 0) {
+        this.postContent = item.CONTENT;
+        this.pSignature = item.SIGNATURE;
+        this.pNickname = item.NICKNAME;
+      } 
+      else {
+        this.commentContent = item.COMCONTENT;
+        this.cSignature = item.SIGNATURE;
+        this.cNickname = item.NICKNAME;
+      }
+
     }
+
+    //submitComment() {}
+
   }
-  }
+
+}
 </script>
 
 <style>
@@ -327,17 +439,21 @@
   }
 
   .user-side {
-    padding: 7% 0;
+    padding: 6% 0;
     margin-right:23px;
     border-radius:10px;
-    background-color:rgba(255, 255, 255, 0.9);
-    width:25%;
+    background-color:rgba(255, 255, 255, 0.8);
+    width:25% !important;
     height:100%;
-    display:inline-block;
+    display: inline-block !important;
   }
 
   .content-side {
-    border-radius:10px;
+    background-color:rgba(255, 255, 255, 0.9);
+    width:72% !important;
+    height:100%; 
+    border-radius: 10px;
+    display: inline-block !important;
   }
 
   .avatar {
@@ -347,7 +463,7 @@
 
   .comment {
     border-radius: 10px;
-    width: 98%;
+    width: 96%;
     background-color: transparent;
     height: 350px;
     margin: 0 auto;

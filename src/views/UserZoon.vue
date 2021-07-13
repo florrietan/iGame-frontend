@@ -3,7 +3,7 @@
 <div>
    
 <div>
-<el-container  style="height: 500px; border: 1px solid #eee">
+<el-container  style="height: 700px; border: 1px solid #eee">
 <el-aside width="300px" class="asid" style="border-radius:10px;background-color:rgba(255, 255, 255, 0.8);margin-top:7px;padding:2px;">
   <br>
     <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc8%2Fdd%2Fb9%2Fc8ddb934a69d90216f1b406cf3975475.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628668047&t=1ffbd058e5f38c29f8a9757421ff7503" height="180px" width="180px" style="border-radius:50%"/>
