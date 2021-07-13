@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="grid-content bg-purple">
-      <a style="" href="/#/ma">
+      <a style="" href="/#/">
         <img class="logo" height="60px" width="170px" src="https://wx1.sinaimg.cn/orj360/4f5151f6gy1gsdcsyhuj6j21ez0ron0r.jpg">
       </a>
     </div>
@@ -177,7 +177,7 @@
     background-color:rgba(217, 254, 255, 0.6);
     border-radius: 30px;
     width: 30%;
-    height: 40%;
+    height: 200px;
     margin: 0 auto;
     margin-top: 20px;
     padding: 6% 4%;

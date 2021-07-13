@@ -9,9 +9,9 @@
             <el-main style="background-color:rgba(255, 255, 255, 0.4);text-align:center;">
               
               <!--楼主-->
-              <div class="postOwner">
-                <div class="comment owner">
-                  <el-aside class="user-side" >
+              <div class="postOwner" v-for="(item,index) in getPostItem" :key="index" :offset="index" :title = "item">
+                <div class="comment owner"  :getPostItem="getPostItem">
+                  <el-aside class="user-side">
                     <div>                
                       <ul>
                         <li>
@@ -23,16 +23,16 @@
                         </li>
                         <br>
 
-                        <li>
+                        <li class="userName">
                         <a href="/#/UserPage" target="_blank">
-                          我是楼主哈哈哈
+                          {{item.NICKNAME}}
                         </a>
                         </li>
 
                         <br>
-                        <li class="l_badge" style="display:block;">
+                        <li class="userSig" style="display:block;padding:0 30px;font-size:15px;">
                           <div class="signature">
-                            楼主的个性签名
+                            {{item.SIGNATURE}}
                           </div>
                         </li>
                       </ul>
@@ -40,20 +40,18 @@
                   </el-aside>
 
                   <el-main class="content-side" >
-                  楼主内容
-                  <br><br><br><br>
-                  楼主内容
-                                  <br><br><br><br>
-                  楼主内容
-                                  <br><br><br><br>
-                  楼主内容
-                                  <br><br><br><br>
-                  楼主内容
+                    <div style="text-align:left;">「{{item.POSTTITLE}}」<br> </div>
+                    <br><br><br><br>
+                    {{item.CONTENT}}
+                    <br><br><br><br>
+                    <br><br><br><br>                                  
+                  
                   </el-main>
                 </div>
               </div>
 
-              <div class="spanAllComment" v-for="(item, index) in getItems" :key="item" :offset="index">
+              <!--<div class="spanAllComment" v-for="(item, index) in getItems" :key="item" :offset="index" :getContent = "getContent">-->
+              <div class="spanAllComment" v-for="(item, index) in getCommentItems" :key="index+1" :offset="index" :title="item">
                 <div class="comment">
                   <el-aside class="user-side">
                     <div>                
@@ -67,39 +65,33 @@
                         </li>
                         <br>
 
-                        <li>
+                        <li class="userName">
                         <a href="/#/UserPage" target="_blank">
-                          我是沙发
+                          {{item.NICKNAME}}
                         </a>
                         </li>
 
                         <br>
-                        <li class="l_badge" style="display:block;">
+                        <li class="userSig" style="display:block;">
                           <div class="signature">
-                            沙发的个性签名
+                            {{item.SIGNATURE}}
                           </div>
                         </li>
                       </ul>
                     </div>
                   </el-aside>
                   <el-main class="content-side">
-                    评论内容
                                     <br><br><br><br>
-                    评论内容
                                     <br><br><br><br>
-                    评论内容
+                                    {{item.COMCONTENT}}
                                     <br><br><br><br>
-                    评论内容
                                     <br><br><br><br>
-                    评论内容
-                                    <br><br><br><br>
-                    评论内容
                   </el-main>
                 </div>
               </div> <!--end of spanAllComment-->
 
 
-
+              <!--
               <div class="comment">
                 <el-aside class="user-side">
                   <div>                
@@ -200,7 +192,7 @@
                       <br>
 
                       <li>
-                      <a href="/#/UserPage" target="_blank">
+                      <a href="/#/UserPage" target="_blank" style="font-size:15px;">
                         我是第三个评论
                       </a>
                       </li>
@@ -228,6 +220,7 @@
                 继续盖楼
                 </el-main>
               </div>
+              -->
 
               <div class="postNewComment comment" style="height:auto;width:90%;padding:2% 3%;background-color:rgba(255,255,255,0.8);">
                 <p style="text-align:left;font-size:20px;font-weight:500;">发表新的评论：</p><br>
@@ -292,7 +285,6 @@
 
   </div>
 
-
 </template>
 
 <script>
@@ -301,15 +293,11 @@ export default {
   //name: "login",
 
   data() {
-    return {
-      getItems: [],//
-      cNickname: "",
-      cSignature: "",
-      commentContent: "",
-      postTitle: "",
-      pNickname: "",
-      pSignature: "",
-      postContent: "",
+    return {    
+      ifFirst: true,
+      getPostItem: [],//
+      getCommentItems: [],
+      commentContent:'',
       url: "http://139.196.167.75:5000/api/PostTiezi",
 
         tableData: [{
@@ -384,45 +372,75 @@ export default {
 
     mounted() {
     this.getPostBrowser(localStorage.postID);
-    console.log("贴子内容是："+this.postContent);
 
   },
 
   methods: {
 
-    store:function(item) {
-      this.getItems=JSON.parse(item);
-      console.log(this.getItems);
+    store1:function(item) {
+        this.getPostItem=JSON.parse(item);
+        console.log('getPostItem是:');
+        console.log(this.getPostItem);
+
+      //this.getCommentItems=JSON.parse(item2);
+
     },
+    store2:function(item) {
+        this.getCommentItems=JSON.parse(item);
+        console.log('getCommentItems是:');
+        console.log(this.getCommentItems);
+    },
+
     async getPostBrowser(postID) {
       this.url = this.url + '/' + postID;
       console.log("url是:" + this.url);
-      await fetch(this.url, {
+
+      await fetch(this.url, {//GET贴子相关信息
         method:'GET',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        }
+        },
+      })      
+      .then(response => response.json())
+      .then(this.ifFirst == false)
+      .then(data => this.store1(data));
+      //console.log("get到了");
+
+      await fetch("http://139.196.167.75:5000/api/GetTieziA/" + postID, {//GET所有评论
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
       })
       .then(response => response.json())
-      .then(data => this.store(data));
-      //console.log("get到了");
+      .then(data => this.store2(data));
+      
+    
     },
-    getContent(item,index) {
-      if(index === 0) {
-        this.postContent = item.CONTENT;
-        this.pSignature = item.SIGNATURE;
-        this.pNickname = item.NICKNAME;
-      } 
-      else {
-        this.commentContent = item.COMCONTENT;
-        this.cSignature = item.SIGNATURE;
-        this.cNickname = item.NICKNAME;
-      }
+    
 
+
+    async submitComment() {
+      const data = {
+        COMCONTENT: this.commentContent,
+        POSTID: localStorage.postID,
+        USERID: localStorage.userID
+      };
+      console.log(data);
+      console.log(JSON.stringify(data));
+      await fetch('http://139.196.167.75:5000/api/PostTiezi', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .catch(error => {console.log(error)});
+        this.$message("发布成功");
     }
-
-    //submitComment() {}
 
   }
 
@@ -436,6 +454,16 @@ export default {
     width: 80%;
     height: 800px;
     background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .userName {
+    font-size:30px;
+  }
+
+  .userSig {
+    display:block;
+    padding:0 30px;
+    font-size:15px;
   }
 
   .user-side {
@@ -454,6 +482,7 @@ export default {
     height:100%; 
     border-radius: 10px;
     display: inline-block !important;
+    font-size: 20px;
   }
 
   .avatar {

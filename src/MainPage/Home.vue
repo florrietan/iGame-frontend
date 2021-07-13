@@ -17,7 +17,6 @@
         <el-col :span="8" style="float:right;" height="300px">   
           <b>公告栏</b>
           <br>
-      
           <div v-for="(AdItem,index) in AdList" :key="index" >
            <div v-if= isShow(index)>
               <el-row class="shadow" style="height:40px">
